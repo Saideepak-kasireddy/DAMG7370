@@ -10,7 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "DAMG_SCHEMA",
-			"table": "Seattle_Pet_Licenses"
+			"table": "SEATTLE_PET_LICENCES"
 		}
 	}
 }
