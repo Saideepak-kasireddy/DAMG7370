@@ -42,7 +42,7 @@
 					"enableStaging": true,
 					"stagingSettings": {
 						"linkedServiceName": {
-							"referenceName": "AzureBlobStorageWorkshop",
+							"referenceName": "AzureBlobStorage1",
 							"type": "LinkedServiceReference"
 						}
 					}
@@ -101,19 +101,6 @@
 					},
 					"enableStaging": false,
 					"validateDataConsistency": true,
-					"logSettings": {
-						"enableCopyActivityLog": true,
-						"copyActivityLogSettings": {
-							"logLevel": "Warning",
-							"enableReliableLogging": false
-						},
-						"logLocationSettings": {
-							"linkedServiceName": {
-								"referenceName": "AzureBlobStorageWorkshop",
-								"type": "LinkedServiceReference"
-							}
-						}
-					},
 					"translator": {
 						"type": "TabularTranslator",
 						"typeConversion": true,

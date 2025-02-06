@@ -7,10 +7,6 @@
 		},
 		"annotations": [],
 		"type": "SnowflakeV2Table",
-		"schema": [],
-		"typeProperties": {
-			"schema": "DAMG_SCHEMA",
-			"table": "SEATTLE_PET_LICENCES"
-		}
+		"schema": []
 	}
 }
