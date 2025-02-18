@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "PetLicensestage",
+						"referenceName": "LoadFctPet",
 						"type": "DatasetReference"
 					},
 					"name": "sourceStg"
@@ -43,19 +43,7 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "joinLocationDim"
-				},
-				{
-					"name": "joinBreedDim"
-				},
-				{
-					"name": "joinDateDim"
-				},
-				{
-					"name": "surrogateKey1"
-				},
-				{
-					"name": "aggregate1"
+					"name": "join1"
 				}
 			],
 			"scriptLines": [
@@ -117,24 +105,10 @@
 				"     query: 'SELECT NVL(MAX(PET_LIC_SK),0) AS PetLicenseSK FROM DAMG_SCHEMA.PET_LIC_FCT\\n',",
 				"     format: 'query') ~> fctMaxID",
 				"sourceStg, sourceLocation join(ZIP_CODE == ZIP,",
-				"     joinType:'inner',",
+				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> joinLocationDim",
-				"joinLocationDim, sourceBreedDim join(SPECIES == SPECIES_NAME,",
-				"     joinType:'inner',",
-				"     matchType:'exact',",
-				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> joinBreedDim",
-				"joinBreedDim, sourceDateDim join(1==1,",
-				"     joinType:'cross',",
-				"     matchType:'exact',",
-				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> joinDateDim",
-				"aggregate1 keyGenerate(output(RowNum as long),",
-				"     startAt: 1L,",
-				"     stepValue: 1L) ~> surrogateKey1",
-				"joinDateDim aggregate() ~> aggregate1"
+				"     broadcast: 'auto')~> join1"
 			]
 		}
 	}
