@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "PetLicensestage",
+						"referenceName": "PetStageTable",
 						"type": "DatasetReference"
 					},
 					"name": "Sourcestg"

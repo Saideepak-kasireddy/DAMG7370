@@ -41,11 +41,7 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [
-				{
-					"name": "join1"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
 				"source(output(",
 				"          LICENSE_ISSUE_DATE as string,",
@@ -103,12 +99,7 @@
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     query: 'SELECT NVL(MAX(PET_LIC_SK),0) AS PetLicenseSK FROM DAMG_SCHEMA.PET_LIC_FCT\\n',",
-				"     format: 'query') ~> fctMaxID",
-				"sourceStg, sourceLocation join(ZIP_CODE == ZIP,",
-				"     joinType:'left',",
-				"     matchType:'exact',",
-				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> join1"
+				"     format: 'query') ~> fctMaxID"
 			]
 		}
 	}

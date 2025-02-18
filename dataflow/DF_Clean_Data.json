@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "PetLicensestage",
+						"referenceName": "PetStageTable",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
