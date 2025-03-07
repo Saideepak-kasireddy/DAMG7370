@@ -10,6 +10,27 @@
 						"type": "DatasetReference"
 					},
 					"name": "TitleRatingsParquet"
+				},
+				{
+					"dataset": {
+						"referenceName": "Ratingspar1",
+						"type": "DatasetReference"
+					},
+					"name": "Ratingspar1"
+				},
+				{
+					"dataset": {
+						"referenceName": "RatingsPar2",
+						"type": "DatasetReference"
+					},
+					"name": "Ratingspar2"
+				},
+				{
+					"dataset": {
+						"referenceName": "RatingsPar3",
+						"type": "DatasetReference"
+					},
+					"name": "Ratingspar3"
 				}
 			],
 			"sinks": [
@@ -21,7 +42,17 @@
 					"name": "RatingsStage"
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "Part01"
+				},
+				{
+					"name": "Part012"
+				},
+				{
+					"name": "Part0123"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          tconst as string,",
@@ -32,7 +63,37 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'parquet') ~> TitleRatingsParquet",
-				"TitleRatingsParquet sink(allowSchemaDrift: true,",
+				"source(output(",
+				"          tconst as string,",
+				"          averageRating as double,",
+				"          numVotes as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> Ratingspar1",
+				"source(output(",
+				"          tconst as string,",
+				"          averageRating as double,",
+				"          numVotes as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> Ratingspar2",
+				"source(output(",
+				"          tconst as string,",
+				"          averageRating as double,",
+				"          numVotes as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> Ratingspar3",
+				"TitleRatingsParquet, Ratingspar1 union(byName: true)~> Part01",
+				"Part01, Ratingspar2 union(byName: true)~> Part012",
+				"Part012, Ratingspar3 union(byName: true)~> Part0123",
+				"Part0123 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
 				"     insertable:true,",

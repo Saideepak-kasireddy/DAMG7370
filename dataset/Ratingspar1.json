@@ -1,25 +1,16 @@
 {
-	"name": "TitleRatingsParquet",
+	"name": "Ratingspar1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage_LS",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"Filename": {
-				"type": "string",
-				"defaultValue": "TitleRatings"
-			}
 		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().Filename",
-					"type": "Expression"
-				},
+				"fileName": "part-00001-35d50664-d9c5-4c26-9868-18861476072f-c000.snappy.parquet",
 				"fileSystem": "silver"
 			},
 			"compressionCodec": "snappy"

@@ -34,14 +34,16 @@
 				"TitleRatings sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'parquet',",
+				"     partitionFileNames:['Ratings.parquet'],",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     mapColumn(",
-				"          tconst,",
-				"          averageRating,",
-				"          numVotes",
-				"     )) ~> TitleRatingsParquet"
+				"          TCONST = tconst,",
+				"          AVERAGERATING = averageRating,",
+				"          NUMVOTES = numVotes",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> TitleRatingsParquet"
 			]
 		}
 	}

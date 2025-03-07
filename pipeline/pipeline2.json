@@ -1,9 +1,9 @@
 {
-	"name": "TitleRatingsParquet",
+	"name": "pipeline2",
 	"properties": {
 		"activities": [
 			{
-				"name": "TitleRatingsParquet",
+				"name": "LoadStageRatings",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -16,13 +16,8 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "TitleRatings",
-						"type": "DataFlowReference",
-						"datasetParameters": {
-							"TitleRatingsParquet": {
-								"Filename": "TitleRatings"
-							}
-						}
+						"referenceName": "LoadRatings",
+						"type": "DataFlowReference"
 					},
 					"compute": {
 						"coreCount": 8,

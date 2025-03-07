@@ -1,25 +1,16 @@
 {
-	"name": "TitleRatingsParquet",
+	"name": "LoadRatings",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage_LS",
 			"type": "LinkedServiceReference"
-		},
-		"parameters": {
-			"Filename": {
-				"type": "string",
-				"defaultValue": "TitleRatings"
-			}
 		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@dataset().Filename",
-					"type": "Expression"
-				},
+				"fileName": "Ratings.parquet",
 				"fileSystem": "silver"
 			},
 			"compressionCodec": "snappy"
