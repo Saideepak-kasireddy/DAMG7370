@@ -1,0 +1,51 @@
+{
+	"name": "TitleRatingsPar",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "RatingsParquet",
+						"type": "DatasetReference"
+					},
+					"name": "TitleRatingsParquet"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "RatingsSnowflake",
+						"type": "DatasetReference"
+					},
+					"name": "RatingsStage"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          tconst as string,",
+				"          averageRating as double,",
+				"          numVotes as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> TitleRatingsParquet",
+				"TitleRatingsParquet sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     stageInsert: true,",
+				"     mapColumn(",
+				"          TCONST = tconst,",
+				"          AVERAGERATING = averageRating,",
+				"          NUMVOTES = numVotes",
+				"     )) ~> RatingsStage"
+			]
+		}
+	}
+}

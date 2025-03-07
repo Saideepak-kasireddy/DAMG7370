@@ -1,0 +1,37 @@
+{
+	"name": "TitleRatingsParquet",
+	"properties": {
+		"activities": [
+			{
+				"name": "TitleRatingsParquet",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 1,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "TitleRatings",
+						"type": "DataFlowReference",
+						"datasetParameters": {
+							"TitleRatingsParquet": {
+								"Name": "TitleRatings"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
